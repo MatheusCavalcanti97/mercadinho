@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="conteudo">
+
+		<link rel="stylesheet" type="text/css"
+			href="../resources/css/template.css" />
+
+		<h:form id="frmCadDes">
+
+			<div class="divCentralizadora">
+
+				<p:toolbar>
+					<f:facet name="left">
+						<h:outputText value="Cadastro de Despesas"/>
+					</f:facet>
+				</p:toolbar>
+
+				<p:panelGrid id="pnlCadDesDados" columns="2" style="">
+
+					<h:outputLabel value="Descrição" />
+					<p:selectOneMenu
+						value="#{despesasController.despesas.descricaoDespesa}">
+						<f:selectItem itemLabel="Selecione uma Despesa" />
+						<f:selectItem itemLabel="Água" itemValue="Água" />
+						<f:selectItem itemLabel="Fornecedores" itemValue="Fornecedores" />
+						<f:selectItem itemLabel="Funcionarios" itemValue="Funcionarios" />
+						<f:selectItem itemLabel="Internet" itemValue="Internet" />
+						<f:selectItem itemLabel="Luz" itemValue="Luz" />
+						<f:selectItem itemLabel="Outros" itemValue="Outros" />
+						<f:selectItem itemLabel="Telefone" itemValue="Telefone" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="Valor" value="Valor: " />
+					<p:inputText id="Valor" maxlength="50" size="30"
+						value="#{despesasController.despesas.valor}" />
+
+					<p:outputLabel for="dataAbertura" value="Data de Abertura" />
+					<p:inputMask mask="99/99/9999" size="30" id="dataAbertura">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputMask>
+					<h:outputText size="30" value="#{despesasController.despesas.data}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+					
+					<p:commandButton value="Salvar"
+						actionListener="#{despesasController.inserirDespesas}"
+						update=":msgGlobal :frmCadDes:pnlCadDesDados" styleClass="botao"
+						icon="fa fa-arrow-left" />
+				</p:panelGrid>
+			</div>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

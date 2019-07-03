@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="conteudo">
+	
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/template.css" />
+	
+		<h:form id="frmProdCad">
+		<div class="divCentralizadora">
+		
+			<p:toolbar>
+				<f:facet name="left">
+					<h:outputText value="Cadastro de Produtos" />
+				</f:facet>
+			</p:toolbar>
+			<h:panelGrid id="pnlProdCad" columns="2">
+
+				<p:outputLabel for="Nome" value="Nome: " />
+				<p:inputText id="Nome" maxlength="50" size="30"
+					value="#{produtoController.produto.nomeProduto}" required="true"
+					requiredMessage="O campo Nome é obrigatório!" />
+
+				<p:outputLabel value="Valor: " />
+				<p:inputText id="Valor" size="30" value="#{produtoController.produto.precoProduto}" required="true"
+					requiredMessage="O campo Valor é obrigatório!" />
+
+				<p:outputLabel value="Quantidade: " />
+				<p:inputText id="Quantidade" size="30" value="#{produtoController.produto.quantidadeProduto}" required="true"
+					requiredMessage="O campo Quantidade é obrigatório!" />
+
+				<p:outputLabel value="Tipo" />
+				<p:selectOneMenu value="#{produtoController.produto.tipoProduto}">
+					<f:selectItem itemLabel="Selecione um tipo!" />
+					<f:selectItem itemLabel="Adega" itemValue="Adega" />
+					<f:selectItem itemLabel="Bebidas" itemValue="Bebidas" />
+					<f:selectItem itemLabel="Cereais" itemValue="Cereais" />
+					<f:selectItem itemLabel="Churrascaria" itemValue="" />
+					<f:selectItem itemLabel="Congelados" itemValue="Congelados" />
+					<f:selectItem itemLabel="Doces e Chocolates"
+						itemValue="Doces e Chocolates" />
+					<f:selectItem itemLabel="Hortifrutas" itemValue="Hortifrutas" />
+					<f:selectItem itemLabel="Laticínios" itemValue="Laticínios" />
+					<f:selectItem itemLabel="Latarias e Conservantes"
+						itemValue="Latarias e Conservantes" />
+					<f:selectItem itemLabel="Limpeza" itemValue="Limpeza" />
+					<f:selectItem itemLabel="Massas" itemValue="Massas" />
+					<f:selectItem itemLabel="Perfumaria" itemValue="Perfumaria" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Marca" />
+				<p:selectOneMenu value="#{produtoController.produto.marcaProduto}">
+					<f:selectItem itemLabel="Selecione uma Marca!" />
+					<f:selectItem itemLabel="Água Sanitaria" itemValue="Água Sanitaria" />
+					<f:selectItem itemLabel="Amaciante" itemValue="Amaciante" />
+					<f:selectItem itemLabel="Higiene" itemValue="Higiene" />
+					<f:selectItem itemLabel="Sabão em pó" itemValue="Sabão em pó" />
+					<f:selectItem itemLabel="Fuba" itemValue="Fuba" />
+					<f:selectItem itemLabel="Doces e Chocolates"
+						itemValue="Doces e Chocolates" />
+					<f:selectItem itemLabel="Hortifrutas" itemValue="Hortifrutas" />
+					<f:selectItem itemLabel="Laticínios" itemValue="Laticínios" />
+					<f:selectItem itemLabel="Latarias e Conservantes"
+						itemValue="Latarias e Conservantes" />
+					<f:selectItem itemLabel="Limpeza" itemValue="Limpeza" />
+					<f:selectItem itemLabel="Massas" itemValue="Massas" />
+					<f:selectItem itemLabel="Perfumaria" itemValue="Perfumaria" />
+				</p:selectOneMenu>
+			</h:panelGrid>
+			<h:panelGrid columns="2">
+				<p:commandButton value="Salvar"
+					actionListener="#{produtoController.inserirProduto}"
+					update=":msgGlobal :frmProdCad:pnlProdCad" styleClass="botao"
+					icon="fa fa-arrow-left"/>
+					
+				<p:button value="Voltar" outcome="/pages/cadastroProduto.xhtml" />
+			</h:panelGrid>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

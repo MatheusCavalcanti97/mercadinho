@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="conteudo">
+
+		<f:metadata>
+			<f:event listener="#{funcionarioController.buscarTodosFuncionarios}"
+				type="preRenderView" />
+		</f:metadata>
+	</ui:define>
+	<ui:define name="conteudo">
+
+		<link rel="stylesheet" type="text/css"
+			href="../resources/css/template.css" />
+
+		<h:form>
+			<div class="divCentralizadora">
+
+				<p:toolbar>
+					<f:facet name="left">
+						<h:outputText value="Lista de Funcionários" />
+					</f:facet>
+				</p:toolbar>
+
+				<p:dataTable emptyMessage="Nenhum registro encontrado."
+					value="#{funcionarioController.listaFuncionarios}"
+					var="funcionario" rows="6" paginator="true">
+
+					<p:column headerText="Código">
+						<h:outputText value="#{funcionario.idFuncionario}" />
+					</p:column>
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{funcionario.nomeFuncionario}" />
+					</p:column>
+
+					<p:column headerText="CPF">
+						<h:outputText value="#{funcionario.cpfFuncionario}" />
+					</p:column>
+
+					<p:column headerText="E-mail">
+						<h:outputText value="#{funcionario.email}" />
+					</p:column>
+
+					<p:column headerText="Excluir">
+						<h:commandButton icon="fa fa-fw fa-remove" value="Excluir"
+							action="#{funcionarioController.removerFuncionario(funcionario)}">
+							<f:setPropertyActionListener value="#{funcionario}"
+								target="#{funcionarioController.funcionario}"></f:setPropertyActionListener>
+						</h:commandButton>
+					</p:column>
+
+					<p:column headerText="Atualizar">
+						<p:commandButton styleClass="text-align: center; color: #fff;"
+							action="#{funcionarioController.atualizarFuncionario()}"
+							icon="fa fa-fw fa-edit" value="Editar" update=":dialogalterar"
+							oncomplete="PF('AtualizarFuncionario').show()">
+							<f:setPropertyActionListener value="#{funcionario}"
+								target="#{funcionarioController.funcionario}"></f:setPropertyActionListener>
+						</p:commandButton>
+					</p:column>
+
+					<p:column>
+						<p:commandButton value="Novo"
+							action="/pages/cadastroFuncionario.xhtml?faces-redirect=true" />
+					</p:column>
+
+				</p:dataTable>
+			</div>
+		</h:form>
+
+		<p:dialog header="Editar Funcionario" widgetVar="AtualizarFuncionario"
+			modal="true" showEffect="clip" id="dialogalterar">
+			<h:form>
+				<p:panelGrid columns="2" styleClass="ui-noborder">
+
+					<p:outputLabel for="nome" value="Nome:" />
+					<p:inputText id="nome" maxlength="50" size="30"
+						value="#{funcionarioController.funcionario.nomeFuncionario}" />
+
+					<p:outputLabel for="Cpf" value="CPF:" />
+					<p:inputText id="Cpf" size="30"
+						value="#{funcionarioController.funcionario.cpfFuncionario}" />
+
+					<p:outputLabel for="email" value="E-mail:" />
+					<p:inputText id="email" maxlength="50" size="30"
+						value="#{funcionarioController.funcionario.email}" />
+
+					<p:outputLabel for="telefone" value="Telefone:" />
+					<p:inputText id="telefone" size="30" mask="(99)999999-9999"
+						value="#{funcionarioController.funcionario.telefoneFuncionario}" />
+
+					<p:outputLabel for="salario" value="Salario:" />
+					<p:inputText id="salario" size="30"
+						value="#{funcionarioController.funcionario.salario}" />
+
+					<p:outputLabel for="dataadmissao" value="Data Admissão:" />
+					<p:inputText id="dataadmissao" size="30" mask="dd/MM/YYYY"
+						value="#{funcionarioController.funcionario.dataAdmissao}" />
+
+
+					<p:outputLabel for="numero" value="Número Imovel:" />
+					<p:inputText id="numero" maxlength="5" size="30"
+						value="#{funcionarioController.funcionario.endereco.numeroImovel}" />
+
+					<p:outputLabel for="logradouro" value="Logradouro:" />
+					<p:inputText id="logradouro" size="30"
+						value="#{funcionarioController.funcionario.endereco.logradouro}" />
+
+					<p:outputLabel for="bairro" value="Bairro:" />
+					<p:inputText id="bairro" size="30"
+						value="#{funcionarioController.funcionario.endereco.bairro}" />
+
+					<p:outputLabel for="cep" value="CEP:" />
+					<p:inputText id="cep" mask="99999-999" size="30"
+						value="#{funcionarioController.funcionario.endereco.cep}" />
+
+					<p:outputLabel for="cidade" value="Cidade:" />
+					<p:inputText id="cidade" size="30"
+						value="#{funcionarioController.funcionario.endereco.cidade}" />
+
+					<p:outputLabel for="uf" value="UF:" />
+					<p:inputText id="uf" maxlength="50" size="30"
+						value="#{funcionarioController.funcionario.endereco.uf}" />
+
+				</p:panelGrid>
+
+				<div
+					style="display: flex; justify-content: center; align-items: center;">
+					<p:commandButton value="AtualizarFuncionario" icon="fa fa-check"
+						action="#{funcionarioController.atualizarFuncionario()}"
+						update=":msgGlobal"
+						oncomplete="PF('AtualizarFuncionario').hide();" required="true" />
+
+				</div>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+</html>

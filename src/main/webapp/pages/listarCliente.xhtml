@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="conteudo">
+
+		<link rel="stylesheet" type="text/css"
+			href="../resources/css/template.css" />
+
+
+		<f:metadata>
+			<f:event listener="#{clienteController.buscarTodosClientes}"
+				type="preRenderView" />
+		</f:metadata>
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:form>
+			<div class="divCentralizadora">
+				<p:toolbar>
+					<f:facet name="left">
+						<h:outputText value="Lista de Clientes" />
+					</f:facet>
+				</p:toolbar>
+
+
+				<p:dataTable emptyMessage="Nenhum registro encontrado."
+					value="#{clienteController.listaClientes}" var="cliente" rows="9"
+					paginator="true" styleclass="width: 200px;">
+
+					<p:column headerText="Código">
+						<h:outputText value="#{cliente.idCliente}" />
+					</p:column>
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{cliente.nomeCliente}" />
+					</p:column>
+
+					<p:column headerText="CPF">
+						<h:outputText value="#{cliente.cpf}" />
+					</p:column>
+
+					<p:column headerText="E-mail">
+						<h:outputText value="#{cliente.email}" />
+					</p:column>
+
+					<p:column headerText="Excluir">
+						<h:commandButton icon="fa fa-fw fa-remove" value="Excluir"
+							action="#{clienteController.removerCliente(cliente)}">
+							<f:setPropertyActionListener value="#{cliente}"
+								target="#{clienteController.cliente}">
+							</f:setPropertyActionListener>
+						</h:commandButton>
+					</p:column>
+
+					<p:column headerText="Atualizar">
+						<p:commandButton styleclass="text-align: center; color: #fff;"
+							action="#{clienteController.AtualizarCliente()}"
+							icon="fa fa-fw fa-edit" value="Editar" update=":dialogalterar"
+							oncomplete="PF('AtualizarCliente').show();">
+							<f:setPropertyActionListener
+								target="#{clienteController.cliente}" value="#{cliente}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column>
+						<p:commandButton value="Novo"
+							action="/pages/cadastroCliente.xhtml?faces-redirect=true" />
+					</p:column>
+
+				</p:dataTable>
+			</div>
+		</h:form>
+
+		<p:dialog header="Editar Cliente" widgetVar="AtualizarCliente"
+			modal="true" showEffect="clip" id="dialogalterar">
+			<h:form>
+				<p:panelGrid columns="2" styleClass="ui-noborder">
+
+					<p:outputLabel for="nome" value="Nome: " />
+					<p:inputText id="nome" maxlength="50" size="30"
+						value="#{clienteController.cliente.nomeCliente}" />
+
+					<p:outputLabel for="cpf" value="CPF: " />
+					<p:inputText id="cpf" size="30"
+						value="#{clienteController.cliente.cpf}" />
+
+					<p:outputLabel for="email" value="Email: " />
+					<p:inputText id="email" maxlength="50" size="30"
+						value="#{clienteController.cliente.email}" />
+
+					<p:outputLabel for="telefone" value="Telefone: " />
+					<p:inputMask id="telefone" size="30" mask="(99)99999-9999"
+						value="#{clienteController.cliente.telefone}" />
+
+					<p:outputLabel for="dataAbertura" value="Data de Abertura: " />
+					<p:inputText id="dataAbertura" size="30" mask="dd/MM/YYYY"
+						value="#{clienteController.cliente.dataAbertura}" />
+
+
+					<p:outputLabel for="numeroImovel" value="Número Imovel: " />
+					<p:inputText id="numeroImovel" maxlength="5" size="30"
+						value="#{clienteController.cliente.endereco.numeroImovel}" />
+
+					<p:outputLabel for="logradouro" value="Logradouro: " />
+					<p:inputText id="logradouro" size="30"
+						value="#{clienteController.cliente.endereco.logradouro}" />
+
+					<p:outputLabel for="bairro" value="Bairro: " />
+					<p:inputText id="bairro" size="30"
+						value="#{clienteController.cliente.endereco.bairro}" />
+
+					<p:outputLabel for="cep" value="Cep: " />
+					<p:inputText id="cep" mask="99999-999" size="30"
+						value="#{clienteController.cliente.endereco.cep}" />
+
+					<p:outputLabel for="cidade" value="Cidade: " />
+					<p:inputText id="cidade" maxlength="50" size="30"
+						value="#{clienteController.cliente.endereco.cidade}" />
+
+					<p:outputLabel for="uf" value="Uf: " />
+					<p:inputText id="uf" maxlength="50" size="30"
+						value="#{clienteController.cliente.endereco.uf}" />
+
+				</p:panelGrid>
+
+				<div
+					style="display: flex; justify-content: center; align-items: center;">
+					<p:commandButton value="AtualizarCliente" icon="fa fa-check"
+						action="#{clienteController.AtualizarCliente()}"
+						update=":msgGlobal" oncomplete="PF('AtualizarCliente').hide();"
+						required="true" />
+
+				</div>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+</html>

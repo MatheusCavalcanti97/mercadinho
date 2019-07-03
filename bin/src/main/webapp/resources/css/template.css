@@ -1,0 +1,24 @@
+@CHARSET "ISO-8859-1";
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+#conteudo {
+	/*margin-top: 1px; dar espaço entre o menu*/
+	width: 100%;
+	left: 0;
+	top: 80px;
+}
+
+
+.divCentralizadora{
+	margin-top: 50px; 
+	margin-left: 50px;
+	margin-right: 50px;
+	margin-bottom: 50px;
+}
+
+
+

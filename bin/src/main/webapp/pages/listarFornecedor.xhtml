@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:event listener="#{fornecedorController.buscarTodosFornecedores}"
+				type="preRenderView" />
+		</f:metadata>
+	</ui:define>
+	<ui:define name="conteudo">
+
+		<link rel="stylesheet" type="text/css"
+			href="../resources/css/template.css" />
+
+		<h:form>
+
+			<div class="divCentralizadora">
+				<p:toolbar>
+					<f:facet name="left">
+						<h:outputText value="Lista de Fornecedores" />
+					</f:facet>
+				</p:toolbar>
+
+				<p:dataTable emptyMessage="Nenhum registro encontrado."
+					value="#{fornecedorController.listaFornecedores}" var="fornecedor"
+					rows="9" paginator="true" styleclass="width: 200px;">
+
+					<p:column headerText="Código">
+						<h:outputText value="#{fornecedor.idFornecedor}" />
+					</p:column>
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{fornecedor.nomeFornecedor}" />
+					</p:column>
+
+					<p:column headerText="CNPJ">
+						<h:outputText value="#{fornecedor.cnpj}" />
+					</p:column>
+
+					<p:column headerText="Telefone">
+						<h:outputText value="#{fornecedor.telefoneFornecedor}" />
+					</p:column>
+
+					<p:column headerText="Excluir">
+						<h:commandButton icon="fa fa-fw fa-remove" value="Excluir"
+							action="#{fornecedorController.removerFornecedor(fornecedor)}">
+							<f:setPropertyActionListener value="#{fornecedor}"
+								target="#{fornecedorController.fornecedor}"></f:setPropertyActionListener>
+						</h:commandButton>
+					</p:column>
+
+					<p:column headerText="Atualizar">
+						<p:commandButton styleClass="text-align: center; color: #fff;"
+							action="#{fornecedorController.atualizarFornecedor()}"
+							icon="fa fa-fw fa-edit" value="Editar" update=":dialogalterar"
+							oncomplete="PF('AtualizarFornecedor').show()">
+							<f:setPropertyActionListener value="#{fornecedor}"
+								target="#{fornecedorController.fornecedor}"></f:setPropertyActionListener>
+						</p:commandButton>
+					</p:column>
+
+					<p:column>
+						<p:commandButton value="Novo"
+							action="/pages/cadastroFornecedor.xhtml?faces-redirect=true" />
+					</p:column>
+
+				</p:dataTable>
+			</div>
+		</h:form>
+
+		<p:dialog header="Editar Funcionario" widgetVar="AtualizarFuncionario"
+			modal="true" showEffect="clip" id="dialogalterar">
+			<h:form>
+				<p:panelGrid columns="2" styleClass="ui-noborder">
+
+					<p:outputLabel for="nome" value="Nome:" />
+					<p:inputText id="nome" maxlength="50" size="30"
+						value="#{fornecedorController.fornecedor.nomeFornecedor}" />
+
+					<p:outputLabel for="Cnpj" value="CNPJ:" />
+					<p:inputText id="Cnpj" size="30"
+						value="#{fornecedorController.fornecedor.cnpj}" />
+
+					<p:outputLabel for="telefone" value="Telefone:" />
+					<p:inputText id="telefone" size="30" mask="(99)999999-9999"
+						value="#{fornecedorController.fornecedor.telefoneFornecedor}" />
+
+					<p:outputLabel for="numero" value="Número Imovel:" />
+					<p:inputText id="numero" maxlength="5" size="30"
+						value="#{fornecedorController.fornecedor.endereco.numeroImovel}" />
+
+					<p:outputLabel for="logradouro" value="Logradouro:" />
+					<p:inputText id="logradouro" size="30"
+						value="#{fornecedorController.fornecedor.endereco.logradouro}" />
+
+					<p:outputLabel for="bairro" value="Bairro:" />
+					<p:inputText id="bairro" size="30"
+						value="#{fornecedorController.fornecedor.endereco.bairro}" />
+
+					<p:outputLabel for="cep" value="CEP:" />
+					<p:inputText id="cep" mask="99999-999" size="30"
+						value="#{fornecedorController.fornecedor.endereco.cep}" />
+
+					<p:outputLabel for="cidade" value="Cidade:" />
+					<p:inputText id="cidade" maxlength="50" size="30"
+						value="#{fornecedorController.fornecedor.endereco.cidade}" />
+
+					<p:outputLabel for="uf" value="UF:" />
+					<p:inputText id="uf" maxlength="50" size="30"
+						value="#{fornecedorController.fornecedor.endereco.uf}" />
+
+				</p:panelGrid>
+
+				<div
+					style="display: flex; justify-content: center; align-items: center;">
+					<p:commandButton value="AtualizarFornecedor" icon="fa fa-check"
+						action="#{fornecedorController.atualizarFornecedor()}"
+						update=":msgGlobal" oncomplete="PF('AtualizarFornecedor').hide();"
+						required="true" />
+
+				</div>
+			</h:form>
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,110 @@
+@CHARSET "ISO-8859-1";
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300');
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
+
+
+@font-face{
+	font-family: 'fonteLogo';
+	src: url();
+}
+
+html, body{
+	width: 100%;
+	padding: 0px;
+	margin: 0;
+}
+
+
+h2, h3{
+	font-family: 'Fjalla One', sans-serif;
+}
+
+.cabecalho{
+	height: 200px;
+	margin: 0px;
+	position: relative;
+	border-bottom: black
+}
+
+.cabecalho h2{
+	color:black;
+	font-size: 20pt;
+}
+
+.cabecalho p{
+	color: black;
+	font-size: 35pt;
+}
+
+.interface{
+	
+	padding: 0px;
+	margin: 0;
+	border: 8px solid white;
+	box-shadow: 1px 1px 10px #424242;
+}
+
+#inicio {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 30pt;
+	color: #424242;
+	text-shadow: 2px 2px 2px #000;
+	text-align: center;
+}
+
+
+p {
+	font-family: 'Fjalla One', sans-serif;
+	font-size: 15pt;
+	text-align: justify;
+	text-indent: 30px;
+}
+
+figure.foto-legenda{
+	position: relative;
+	margin: 0px;
+}
+
+
+figure.foto-legenda figcaption {
+	background-color: rgba(0,0,0,0.7);
+	position: relative;
+	font-family: 'Fjalla One', sans-serif;
+	color: white;
+	text-align: center;
+	box-sizing: border-box;
+	transition: opacity 1s;
+	box-shadow: 1px 1px 10px #424242;
+}
+
+figure.foto-legenda:hover figcaption{
+	color: #04B404;
+}
+
+figure.foto-legenda img{
+	padding: 10px;
+	display:inline-block;
+	box-shadow: 1px 1px 10px #424242;
+	width: 250px;
+	height: 250px;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

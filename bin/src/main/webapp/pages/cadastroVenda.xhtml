@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="conteudo">
+	
+	<link rel="stylesheet" type="text/css"
+		href="../resources/css/template.css" />
+		
+		<h:form>
+		<div class="divCentralizadora">
+			<p:toolbar>
+				<f:facet name="left">
+					<h:outputText value="Vendas" />
+				</f:facet>
+			</p:toolbar>
+
+			<p:dataTable emptyMessage="Nenhum registro encontrado."
+				size="30" value="produto" rows="4" paginator="true">
+
+				<p:outputLabel for="Email" value="E-mail: " />
+				<p:inputText id="Email" maxlength="50" size="30"
+					value="#{funcionarioController.funcionario.email}" required="true"
+					requiredMessage="O campo E-mail é obrigatorio!" />
+
+
+			</p:dataTable>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
