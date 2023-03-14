@@ -6,7 +6,7 @@ public class TestesProjeto {
 
 		// Deve-se digitar sem os pontos e sem o traço.
 //		System.out.println("Verificacao de CPF");
-//		System.out.println(MetodosVerificadores.verificacaoCpf("12406186466"));
+//		System.out.println(MetodosVerificadores.verificacaoCpf("xxxxxxxxxxx"));
 //		System.out.println();
 //		System.out.println("Verificacao de Nome");
 //		System.out.println(MetodosVerificadores.verificacaoNome(""));
