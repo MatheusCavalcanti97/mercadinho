@@ -37,22 +37,22 @@ public class FuncionarioDaoTest {
 		f.setEmail("naoseidenada@hotmail.com kkkkk");
 		f.setSalario(5000.00);
 		f.setDataAdmissao(d);
-		f.setTelefoneFuncionario("04181995377442");
-		f.setCpfFuncionario("12406186466");
+		f.setTelefoneFuncionario("081999999999");
+		f.setCpfFuncionario("11122233344");
 
 		e.setUf("Pernambuco");
-		e.setCidade("Quipapá");
-		e.setBairro("Centro");
+		e.setCidade("cidade");
+		e.setBairro("bairro");
 		e.setLogradouro("Casa");
 		e.setNumeroImovel(10);
-		e.setCep("55415000");
+		e.setCep("11111000");
 
 		f.setEndereco(e);
 
 		manager.persist(f);
 		manager.getTransaction().commit();
 
-		Funcionario funcionarioBD = cdit.buscarPorCpf("12406186466");
+		Funcionario funcionarioBD = cdit.buscarPorCpf("1112223334466");
 		assertEquals("12406186466", funcionarioBD.getCpfFuncionario());
 	}
 
@@ -60,7 +60,7 @@ public class FuncionarioDaoTest {
 	public void Test2Editar() {
 
 		FuncionarioDaoImplTest funcionarioDaoTest = new FuncionarioDaoImplTest(null);
-		Funcionario funcionario = funcionarioDaoTest.buscarPorCpf("12406186466");
+		Funcionario funcionario = funcionarioDaoTest.buscarPorCpf("11122233344");
 
 		funcionario.setCpfFuncionario("09807040493");
 		manager.merge(funcionario);
