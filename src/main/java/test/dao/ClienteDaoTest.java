@@ -35,26 +35,26 @@ public class ClienteDaoTest {
 
 		Date d = new Date();
 
-		c.setNomeCliente("Matheus");
-		c.setCpf("12406186466");
-		c.setTelefone("04181995377442");
+		c.setNomeCliente("joaozinho");
+		c.setCpf("11122233344");
+		c.setTelefone("081999999999");
 
 		c.setDataAbertura(d);
-		c.setEmail("matheus_cla@hotmail.com");
+		c.setEmail("joaozinho123@hotmail.com");
 
-		e.setUf("Pernambuco");
-		e.setCidade("Quipapá");
+		e.setUf("SP");
+		e.setCidade("Tamandagapio");
 		e.setBairro("Centro");
 		e.setLogradouro("Casa");
 		e.setNumeroImovel(10);
-		e.setCep("55415000");
+		e.setCep("11222000");
 		c.setEndereco(e);
 
 		manager.persist(c);
 		manager.getTransaction().commit();
 
-		Cliente clienteBD = cdit.buscarPorCpf("12406186466");
-		assertEquals("12406186466", clienteBD.getCpf());
+		Cliente clienteBD = cdit.buscarPorCpf("11122233344");
+		assertEquals("11122233344", clienteBD.getCpf());
 
 	}
 
